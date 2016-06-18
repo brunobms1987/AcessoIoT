@@ -6,6 +6,8 @@
                     <th>Código</th>
                     <th>Nome do Local</th>
                     <th>Tipo Local</th>                   
+                    <th>Usuário 01</th>                   
+                    <th>Usuário 02</th>                   
                     <th>Ação</th>                   
                 </tr>
 
@@ -15,9 +17,9 @@
                 $tipoUser = $_SESSION['tipoLogado'];
                 $id = $_SESSION['idLogado'];
                 if ($tipoUser == 1) {
-                    $resultado = busca($conexao, "SELECT local.id, local.localDescricao, local.tipoLocalId, tipoLocal.tipoLocalDescricao from local inner join tipoLocal on local.tipoLocalID = tipoLocal.id order by id");
+                    $resultado = busca($conexao, "SELECT local.id, local.localDescricao, local.tipoLocalId, local.localUser01, local.localUser02, tipoLocal.tipoLocalDescricao from local inner join tipoLocal on local.tipoLocalID = tipoLocal.id order by id");
                 } else if ($tipoUser != 1) {
-                    $resultado = busca($conexao, "SELECT local.id, local.localDescricao, local.tipoLocalId, tipoLocal.tipoLocalDescricao from local inner join tipoLocal on local.tipoLocalID = tipoLocal.id where id=$id order by id");
+                    $resultado = busca($conexao, "SELECT local.id, local.localDescricao, local.tipoLocalId, local.localUser01, local.localUser02, tipoLocal.tipoLocalDescricao from local inner join tipoLocal on local.tipoLocalID = tipoLocal.id where id=$id order by id");
                 }
 
                 $total = mysqli_num_rows($resultado);
@@ -42,6 +44,8 @@
                         <td><?= $linha['id']; ?></td>
                         <td><?= $linha['localDescricao']; ?></td>
                         <td><?= $linha['tipoLocalDescricao']; ?></td>
+                        <td><?= $linha['localUser01']; ?></td>
+                        <td><?= $linha['localUser02']; ?></td>
 
                         <td>
                             <a  href="index.php?pag=12&id=<?= $linha['id']; ?>" title="Visualizar <?= $linha['pessoaNome']; ?>">Visualizar</a> |

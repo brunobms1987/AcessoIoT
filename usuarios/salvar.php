@@ -52,20 +52,17 @@ if ($_GET['acao'] == 1) {
             . "VALUES ('{$_POST['nome']}', '{$_POST['cpf']}', '{$_POST['datanasc']}', '{$_POST['telefone']}', '{$_POST['celular']}', '{$_POST['cartaoRFID']}', '{$_POST['usuario']}', "
             . "'{$_POST['senha']}', '{$_POST['email']}', '{$_POST['tipo']}');";
 } else {
-    if ($nomenovo == null || $nomenovo == "")
-        $nomenovo = $_POST['fotoantiga'];
-    $query = "UPDATE usuario set nome='{$_POST['nome']}', usuario='{$_POST['usuario']}', email='{$_POST['email']}', senha='$senha', tipo='{$_POST['tipo']}', descricao='{$_POST['descricao']}', "
-            . "foto='{$nomenovo}', dataNasc='{$_POST['datanasc']}' where id={$_POST['id']} ";
+    $query = "UPDATE pessoa set pessoaNome='{$_POST['nome']}', pessoaCPF='{$_POST['cpf']}', pessoaNascimento='{$_POST['datanasc']}', pessoaTelefone='{$_POST['telefone']}',  pessoaCelular='{$_POST['celular']}', "
+            . " pessoaRFID='{$_POST['cartaoRFID']}', pessoaLogin='{$_POST['usuario']}', pessoaSenha=$senha, pessoaEmail='{$_POST['email']}', tipousuario_id='{$_POST['tipo']}' where id={$_POST['id']} ";
 }
 
 $resultado = insere($conexao, $query);
 
 if ($resultado) {
     echo "Salvo com sucesso <br>";
-    echo "Usuário: " . $_POST['usuario'] . " | Senha: " . $senha;
+    echo "Usuário: " . $_POST['usuario'] . " | Senha: " . $senha . "<br>";
 } else
     echo "Erro ao cadastrar <br>";
-echo $query;
 
 
 //FIM - SCRIPT DE INSERÇÃO NO BANCO

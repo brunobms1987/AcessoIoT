@@ -38,6 +38,9 @@
         case 13: 
             $url = "/locais/editar.php";
             break;  
+        case 14: 
+            $url = "/logs.php";
+            break;  
         default :
             $url = "home.php";
             

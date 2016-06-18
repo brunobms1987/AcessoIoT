@@ -31,8 +31,6 @@ if (!empty($_FILES['arquivo']['name'])) {
 if ($_GET['acao'] == 1) {
     $query = "INSERT INTO local (localDescricao, tipoLocalId) VALUES ('{$_POST['nomeLocal']}', {$_POST['tipoLocal']});";
 } else {
-    if ($nomenovo == null || $nomenovo == "")
-        $nomenovo = $_POST['fotoantiga'];
     $query = "UPDATE local set localDescricao='{$_POST['nomeLocal']}', tipoLocalID='{$_POST['tipoLocal']}' where id={$_POST['id']} ";
 }
 

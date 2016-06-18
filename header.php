@@ -17,7 +17,12 @@
                     </div>   
                     <div class="row">                       
                         <div class="col-md-12">                               
-                            <a href="index.php?pag=4"> Usuários  </a> - <a href="index.php?pag=9"> Locais </a> - <a href="logout.php"> Sair do sistema </a>
+                            <a href="index.php?pag=4"> Usuários  </a> - <a href="index.php?pag=9"> Locais </a> 
+                            <?= "";
+                            if ($_SESSION['tipoLogado'] == 1)
+                                echo " - <a href='index.php?pag=14'>Logs</a> "
+                                ?>
+                            - <a href="logout.php"> Logoff</a>
                         </div>
 
                     </div>   

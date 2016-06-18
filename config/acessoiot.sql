@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 18-Jun-2016 às 04:52
+-- Generation Time: 18-Jun-2016 às 21:53
 -- Versão do servidor: 5.6.26-log
 -- PHP Version: 5.6.14
 
@@ -57,18 +57,20 @@ CREATE TABLE `histpessoa` (
 CREATE TABLE `local` (
   `id` int(11) NOT NULL,
   `localDescricao` varchar(45) NOT NULL,
-  `tipoLocalId` int(11) NOT NULL
+  `tipoLocalId` int(11) NOT NULL,
+  `localUser01` int(11) NOT NULL,
+  `localUser02` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `local`
 --
 
-INSERT INTO `local` (`id`, `localDescricao`, `tipoLocalId`) VALUES
-(1, 'Sala B12', 2),
-(2, 'Laboratório B18', 1),
-(3, 'Laboratório de Hardware', 1),
-(4, 'Sala B14', 2);
+INSERT INTO `local` (`id`, `localDescricao`, `tipoLocalId`, `localUser01`, `localUser02`) VALUES
+(1, 'Sala B12', 2, 1, 3),
+(2, 'Laboratório B18', 1, 1, 2),
+(3, 'Sala de Testes', 1, 2, 1),
+(4, 'Sala B14', 2, 2, 3);
 
 -- --------------------------------------------------------
 
@@ -84,6 +86,15 @@ CREATE TABLE `logacesso` (
   `tag` varchar(10) DEFAULT NULL,
   `situacao` varchar(25) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `logacesso`
+--
+
+INSERT INTO `logacesso` (`id`, `data_acesso`, `pessoa`, `local`, `tag`, `situacao`) VALUES
+(1, '2016-06-18 14:51:35', 'bruno', 'B18', 'BRUNO123', 'LIBERADO'),
+(2, '2016-06-20 14:55:50', 'jose', 'B12', 'JOSE1234', 'LIBERADO'),
+(3, '2016-06-19 23:20:20', 'bruno', 'B12', 'BRUNO123', 'NEGADO');
 
 -- --------------------------------------------------------
 
@@ -110,9 +121,9 @@ CREATE TABLE `pessoa` (
 --
 
 INSERT INTO `pessoa` (`id`, `pessoaNome`, `pessoaCPF`, `pessoaNascimento`, `pessoaTelefone`, `pessoaCelular`, `pessoaRFID`, `pessoaLogin`, `pessoaSenha`, `pessoaEmail`, `tipoUsuario_id`) VALUES
-(1, 'Bruno Martins', '123.456.789-01', '1987-01-16', '55-9999-9999', '55-8888-8888', NULL, 'bruno', '1234', 'brunobms1987@gmail.com', 1),
-(2, 'José da Silva', '12345612301', '2001-02-20', '55-6666-6666', '55-7777-7777', NULL, 'jose', '1234', 'jose_silva@jose.gmail.js', 2),
-(3, 'Pedro Hernesto', '82893902012', '1987-04-18', '66-5555-7777', '44-5555-8888', 'ABCD0011', 'pedro', '1234', 'teste@esder.coasdsa', 2);
+(1, 'Bruno Martins', '123.456.789-01', '1987-01-16', '55-9999-9999', '55-8888-8888', 'BRUNO123', 'bruno', '1234', 'brunobms1987@gmail.com', 1),
+(2, 'José da Silva', '12345612301', '2001-02-20', '55-6666-6666', '55-7777-7777', 'JOSE1234', 'jose', '1234', 'jose_silva@jose.gmail.js', 2),
+(3, 'Pedro Hernesto Editado', '82893902012', '1987-04-18', '66-5555-7777', '44-5555-8888', 'ABCD0011', 'pedroEditado', '1234', 'teste@esder.coasdsa.Editado', 2);
 
 -- --------------------------------------------------------
 
@@ -246,7 +257,7 @@ ALTER TABLE `local`
 -- AUTO_INCREMENT for table `logacesso`
 --
 ALTER TABLE `logacesso`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `pessoa`
 --
