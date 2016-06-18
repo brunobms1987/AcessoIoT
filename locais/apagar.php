@@ -1,4 +1,4 @@
-
+<!--REFERENTE AO CADASTRO DE LOCAIS-->
 <?php
 
 include '../config/conexao.php';

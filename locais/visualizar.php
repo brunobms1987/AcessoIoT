@@ -1,12 +1,13 @@
-
+<!--REFERENTE AO CADASTRO DE LOCAIS-->
 <?php
 if (!isset($_GET['id'])) {
     //caso não seja passado o id para buscar o usuário no banco, redireciona para a página de listagem.
-    header("Location: index.php?pag=4");
+    header("Location: index.php?pag=9");
 }
 $conexao = conecta();
-$resultado = busca($conexao, "SELECT * from pessoa where id={$_GET['id']}");
-$usuario = mysqli_fetch_array($resultado);
+$resultado = busca($conexao, "SELECT local.id, local.localDescricao, local.tipoLocalId, tipoLocal.tipoLocalDescricao from local inner join tipoLocal on local.tipoLocalID = tipoLocal.id where local.id={$_GET['id']}");
+
+$local = mysqli_fetch_array($resultado);
 ?> 
 <style>
     th {
@@ -26,20 +27,14 @@ $usuario = mysqli_fetch_array($resultado);
                     <table class="table">
                         <tbody><tr  style="background-color:#6495ED;">
                                 <th>Código</th>
-                                <th>Usuário</th>
-                                <th>Nome</th>
-                                <th>Email</th>                   
-                                <th>Data de Nascimento</th>
-                                <th>Tipo Usuário</th>
+                                <th>Nome do Local</th>
+                                <th>Tipo do Local</th>
                             </tr>
 
                             <tr>
-                                <td><?= $usuario['id']; ?></td>
-                                <td><?= $usuario['pessoaLogin']; ?></td>
-                                <td><?= $usuario['pessoaNome']; ?></td>
-                                <td><?= $usuario['pessoaEmail']; ?></td>
-                                <td><?= date('d/m/Y', strtotime($usuario['pessoaNascimento'])); ?></td>
-                                <td><?= $usuario['tipoUsuario_id'] == 1 ? "Administrador" : "Usuário"; ?></td>
+                                <td><?= $local['id']; ?></td>
+                                <td><?= $local['localDescricao']; ?></td>
+                                <td><?= $local['tipoLocalDescricao']; ?></td>
                             </tr>
                         </tbody>
                     </table>

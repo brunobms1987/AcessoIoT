@@ -48,8 +48,9 @@ if (isset($_POST['gerador']) && !empty($_POST['gerador'])) {
 //INÍCIO - SCRIPT DE INSERÇÃO NO BANCO
 //SE A ACAO PASSADA POR GET( NOS FORMULÁRIOS ) FOR 1, É CADASTRO NOVO, SENÃO É EDIÇÃO
 if ($_GET['acao'] == 1) {
-    $query = "INSERT INTO usuario (nome, usuario, email, senha, tipo, descricao, foto, datanasc, dataCadastro)  "
-            . "VALUES ('{$_POST['nome']}', '{$_POST['usuario']}', '{$_POST['email']}', '$senha', '{$_POST['tipo']}','{$_POST['descricao']}' ,'{$nomenovo}', '{$_POST['datanasc']}', '{$hoje}');";
+    $query = "INSERT INTO pessoa (pessoaNome, pessoaCPF, pessoaNascimento, pessoaTelefone, pessoaCelular, pessoaRFID, pessoaLogin, pessoaSenha, pessoaEmail, tipousuario_id)  "
+            . "VALUES ('{$_POST['nome']}', '{$_POST['cpf']}', '{$_POST['datanasc']}', '{$_POST['telefone']}', '{$_POST['celular']}', '{$_POST['cartaoRFID']}', '{$_POST['usuario']}', "
+            . "'{$_POST['senha']}', '{$_POST['email']}', '{$_POST['tipo']}');";
 } else {
     if ($nomenovo == null || $nomenovo == "")
         $nomenovo = $_POST['fotoantiga'];
@@ -60,10 +61,11 @@ if ($_GET['acao'] == 1) {
 $resultado = insere($conexao, $query);
 
 if ($resultado) {
-    echo "Salvo com sucesso";
+    echo "Salvo com sucesso <br>";
     echo "Usuário: " . $_POST['usuario'] . " | Senha: " . $senha;
 } else
-    echo "Erro ao cadastrar";
+    echo "Erro ao cadastrar <br>";
+echo $query;
 
 
 //FIM - SCRIPT DE INSERÇÃO NO BANCO
