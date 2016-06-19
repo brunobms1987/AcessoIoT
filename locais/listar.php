@@ -64,7 +64,7 @@
 
         </table>
         <?php
-        echo "<a href='index.php?pag=4&list=1'>Primeira</a> ";
+        echo "<a href='index.php?pag=9&list=1'>Primeira</a> ";
         if ($pagAtual > 1)
             echo " <a href='index.php?pag=9&list=" . ($pagAtual - 1) . "'>Anterior</a> ";
 

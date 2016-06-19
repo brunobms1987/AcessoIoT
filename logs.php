@@ -30,9 +30,6 @@
                 $pagAtual = isset($_GET['list']) ? $_GET['list'] : 1;
                 $inicio = ($qtdPorPagina * $pagAtual) - $qtdPorPagina;
 
-                //$query = "select * from usuario limit $inicio, $qtdPorPagina";
-                //$resultado = busca($conexao, $query);
-
                 $i = 0;
                 $cor1 = "#D3D3D3;";
                 $cor2 = "#BEBEBE;";
@@ -55,9 +52,9 @@
 
         </table>
         <?php
-        echo "<a href='index.php?pag=13&list=1'>Primeira</a> ";
+        echo "<a href='index.php?pag=14&list=1'>Primeira</a> ";
         if ($pagAtual > 1)
-            echo " <a href='index.php?pag=13&list=" . ($pagAtual - 1) . "'>Anterior</a> ";
+            echo " <a href='index.php?pag=14&list=" . ($pagAtual - 1) . "'>Anterior</a> ";
 
 
         $select = " <select name='selecao_lista' id='selecao_lista' onchange=\"direcionar()\">";
@@ -72,8 +69,8 @@
         $select .="</select>";
         echo "Ir para página " . $select;
         if ($pagAtual + 1 <= $paginas)
-            echo " <a href='index.php?pag=13&list=" . ($pagAtual + 1) . "'>Próxima</a> ";
-        echo " <a href='index.php?pag=4&list=$paginas'>Última</a> ";
+            echo " <a href='index.php?pag=14&list=" . ($pagAtual + 1) . "'>Próxima</a> ";
+        echo " <a href='index.php?pag=14&list=$paginas'>Última</a> ";
         ?>
     </div>
 </div>
@@ -81,6 +78,6 @@
 <script>
     function direcionar() {
         var x = document.getElementById("selecao_lista").selectedIndex + 1;
-        window.location = "index.php?pag=4&list=" + x;
+        window.location = "index.php?pag=14&list=" + x;
     }
 </script>
