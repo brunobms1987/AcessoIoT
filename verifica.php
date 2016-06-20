@@ -13,11 +13,11 @@ if (mysqli_num_rows($resultado) > 0) {
     $_SESSION['tipoLogado'] = $linha['tipoUsuario_id'];
     $_SESSION['senhaLogado'] = $linha['pessoaSenha'];
     $_SESSION['nomeLogado'] = $linha['pessoaNome'];
+    $_SESSION['rfidLogado'] = $linha['pessoaRFID'];
     desconecta($conexao);
     header('Location:index.php?pag=4');
 } else {
     desconecta($conexao);
     header('Location:login.php?erro=1');
 }
-
 ?>

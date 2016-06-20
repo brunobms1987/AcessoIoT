@@ -31,18 +31,6 @@
                     </select>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <label for="user01">Usuário Liberado 01</label>
-                    <input type="text" class="form-control" id="nome" name="user01" required="">
-                </div>
-            </div> 
-            <div class="row">
-                <div class="col-md-4">
-                    <label for="user02">Usuário Liberado 02</label>
-                    <input type="text" class="form-control" id="nome" name="user02" required="">
-                </div>
-            </div> 
     </div>
 </div>
 <br>

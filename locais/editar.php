@@ -1,11 +1,8 @@
 <!--REFERENTE AO CADASTRO DE LOCAIS-->
 <?php
 $id = $_GET['id'];
-
 $conexao = conecta();
-
 $resultado = busca($conexao, "select * from local where id= $id");
-
 $registro = mysqli_fetch_array($resultado);
 ?>
 
@@ -40,24 +37,24 @@ $registro = mysqli_fetch_array($resultado);
                         <option value="2">Sala de Aula</option>
                     </select>
                 </div>
-            </div>   
-            <div class="row">
-                <div class="col-md-4">
-                    <label for="user01">Usuário Liberado 01</label>
-                    <input type="text" class="form-control" id="nome" name="user01" value="<?= $registro['localUser01'] ?>" required="">
-                </div>
-            </div> 
-            <div class="row">
-                <div class="col-md-4">
-                    <label for="user02">Usuário Liberado 02</label>
-                    <input type="text" class="form-control" id="nome" name="user02" value="<?= $registro['localUser02'] ?>"required="">
-                </div>
-            </div> 
+                <!--</div>   
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="user01">Usuário Liberado 01</label>
+                        <input type="text" class="form-control" id="nome" name="user01" value="<?= $resLiberaUser['pessoa_id'] ?>" required="">
+                    </div>
+                </div> 
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="user02">Usuário Liberado 02</label>
+                        <input type="text" class="form-control" id="nome" name="user02" value="<?= $resLiberaUser['pessoa_id'] ?>"required="">
+                    </div>
+                </div> -->
+            </div>
     </div>
-</div>
-<br>
-<br>
-<a href="index.php?pag=9" class="btn btn-danger"> Cancelar e Voltar </a>
-<input type="submit"  class="btn btn-success" value="Salvar">
+    <br>
+    <br>
+    <a href="index.php?pag=9" class="btn btn-danger"> Cancelar e Voltar </a>
+    <input type="submit"  class="btn btn-success" value="Salvar">
 
-</form>
+    </form>

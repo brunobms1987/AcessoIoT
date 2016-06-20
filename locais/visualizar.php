@@ -29,16 +29,16 @@ $local = mysqli_fetch_array($resultado);
                                 <th>Código</th>
                                 <th>Nome do Local</th>
                                 <th>Tipo do Local</th>
-                                <th>Usuário 01</th>                   
-                                <th>Usuário 02</th> 
+                                <!--<th>Usuário 01</th>                   
+                                <th>Usuário 02</th> -->
                             </tr>
 
                             <tr>
                                 <td><?= $local['id']; ?></td>
                                 <td><?= $local['localDescricao']; ?></td>
                                 <td><?= $local['tipoLocalDescricao']; ?></td>
-                                <td><?= $local['localUser01']; ?></td>
-                                <td><?= $local['localUser02']; ?></td>
+                                <!--<td><?= ""; #$local['localUser01'];                              ?></td>
+                        <td><?= ""; #$local['localUser02'];                              ?></td>-->
                             </tr>
                         </tbody>
                     </table>
@@ -51,24 +51,29 @@ $local = mysqli_fetch_array($resultado);
 </div>
 <?=
 "";
-if ($_SESSION['idLogado'] == $local['localUser01'] || $_SESSION['idLogado'] == $local['localUser02']) {
-    ?>
-    <div class="row" style="margin-top: 10px">
-        <div class="col-md-12">
-            <button id="abrirLocal" onclick="abrirLocal()" class="btn btn-success"> Abrir Local </button>
-        </div>
-    </div>
-    <?=
-    "";
-};
+$idLogado = $_SESSION['idLogado'];
+$rfidLogado = $_SESSION['rfidLogado'];
+$idLocal = $_GET['id'];
+$userLiberado = busca($conexao, "SELECT * from pessoaLocal where local_id = {$_GET['id']}");
+while (($liberado = mysqli_fetch_array($userLiberado)) and $_SESSION['idLogado'] == $liberado['pessoa_id']) {
+    if ($_SESSION['idLogado'] == $local['localUser01'] || $_SESSION['idLogado'] == $local['localUser02']) {
+        ?>
+        <form action="index.php?pag=15&idLogado=<?= $idLogado ?>&idLocal=<?= $idLocal ?>&rfidLogado=<?= $rfidLogado ?>" method="POST"  enctype="multipart/form-data">
+            <div class="row" style="margin-top: 10px">
+                <div class="col-md-12">
+                    <button id="abrirLocal" class="btn btn-success"> Abrir Local </button>
+                </div>
+            </div>
+        </form>
+        <?=
+        "";
+    };
+}
 ?>
 <script>
-    function abrirLocal(divName) {
-        var divImpressao = document.getElementById('div_impressao');
-        var janela = window.open('', '_blank', 'width=500px');
-        janela.document.open();
-        janela.document.write('<html><body onload="window.print()">' + divImpressao.innerHTML + '</html>');
-        janela.document.close();
-
+    function abrirLocal() {
+        var idLogado
+        window.location = 'index.php?pag=15&<?= "idLogado = $idLogado&idLocal = $id&rfidLogado = $rfidLogado" ?>';
     }
+    onclick = "abrirLocal()"
 </script>

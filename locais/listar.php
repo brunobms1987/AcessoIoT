@@ -6,8 +6,8 @@
                     <th>Código</th>
                     <th>Nome do Local</th>
                     <th>Tipo Local</th>                   
-                    <th>Usuário 01</th>                   
-                    <th>Usuário 02</th>                   
+                    <!--<th>Usuário 01</th>                   
+                    <th>Usuário 02</th>-->
                     <th>Ação</th>                   
                 </tr>
 
@@ -44,8 +44,8 @@
                         <td><?= $linha['id']; ?></td>
                         <td><?= $linha['localDescricao']; ?></td>
                         <td><?= $linha['tipoLocalDescricao']; ?></td>
-                        <td><?= $linha['localUser01']; ?></td>
-                        <td><?= $linha['localUser02']; ?></td>
+                        <!--<td><?= ""; #$linha['localUser01'];   ?></td>
+                        <td><?= ""; #$linha['localUser02'];   ?></td>-->
 
                         <td>
                             <a  href="index.php?pag=12&id=<?= $linha['id']; ?>" title="Visualizar <?= $linha['pessoaNome']; ?>">Visualizar</a> |

@@ -42,6 +42,10 @@
             $url = "/logs.php";
             break;  
         default :
+        case 15: 
+            $url = "/arduino.php";
+            break;  
+        default :
             $url = "home.php";
             
     }
