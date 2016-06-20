@@ -31,11 +31,7 @@ if (!empty($_FILES['arquivo']['name'])) {
 if ($_GET['acao'] == 1) {
     $query = "INSERT INTO local (localDescricao, tipoLocalId) VALUES ('{$_POST['nomeLocal']}', {$_POST['tipoLocal']});";
 } else {
-    $query = "DELETE from pessoaLocal where pessoa_id = {$_POST['User01']} and local_id = {$_POST['id']};"
-            . "DELETE from pessoaLocal where pessoa_id = {$_POST['User02']} and local_id = {$_POST['id']};"
-            . "UPDATE local set localDescricao='{$_POST['nomeLocal']}', tipoLocalID='{$_POST['tipoLocal']}' where id={$_POST['id']};"
-            . "INSERT INTO pessoaLocal (pessoa_id, local_id) VALUES ('{$_POST['user01']}', {$_POST['id']});"
-            . "INSERT INTO pessoaLocal (pessoa_id, local_id) VALUES ('{$_POST['user02']}', {$_POST['id']});";
+    $query = "UPDATE local set localDescricao='{$_POST['nomeLocal']}', tipoLocalID='{$_POST['tipoLocal']}' where id={$_POST['id']};";
 }
 
 $resultado = insere($conexao, $query);
