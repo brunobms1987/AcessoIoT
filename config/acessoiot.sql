@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 18-Jun-2016 às 21:53
+-- Generation Time: 20-Jun-2016 às 04:10
 -- Versão do servidor: 5.6.26-log
 -- PHP Version: 5.6.14
 
@@ -70,7 +70,7 @@ INSERT INTO `local` (`id`, `localDescricao`, `tipoLocalId`, `localUser01`, `loca
 (1, 'Sala B12', 2, 1, 3),
 (2, 'Laboratório B18', 1, 1, 2),
 (3, 'Sala de Testes', 1, 2, 1),
-(4, 'Sala B14', 2, 2, 3);
+(4, 'Sala B20', 2, 2, 3);
 
 -- --------------------------------------------------------
 
@@ -136,6 +136,15 @@ CREATE TABLE `pessoalocal` (
   `local_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Extraindo dados da tabela `pessoalocal`
+--
+
+INSERT INTO `pessoalocal` (`pessoa_id`, `local_id`) VALUES
+(1, 1),
+(2, 1),
+(1, 2);
+
 -- --------------------------------------------------------
 
 --
@@ -173,6 +182,28 @@ CREATE TABLE `tipousuario` (
 INSERT INTO `tipousuario` (`id`, `tipoUsuarioDescricao`) VALUES
 (1, 'Administrador'),
 (2, 'Comum');
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `vb_liberado`
+--
+CREATE TABLE `vb_liberado` (
+`usuario` varchar(45)
+,`tag` varchar(45)
+,`local` varchar(45)
+,`pessoa_id` int(11)
+,`local_id` int(11)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `vb_liberado`
+--
+DROP TABLE IF EXISTS `vb_liberado`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vb_liberado`  AS  select `ps`.`pessoaLogin` AS `usuario`,`ps`.`pessoaRFID` AS `tag`,`lc`.`localDescricao` AS `local`,`pl`.`pessoa_id` AS `pessoa_id`,`pl`.`local_id` AS `local_id` from ((`pessoalocal` `pl` join `pessoa` `ps` on((`pl`.`pessoa_id` = `ps`.`id`))) join `local` `lc` on((`pl`.`local_id` = `lc`.`id`))) ;
 
 --
 -- Indexes for dumped tables
